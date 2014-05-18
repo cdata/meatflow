@@ -1,0 +1,19 @@
+{
+  "name": "meatflow",
+  "main": "meatflow.js",
+  "version": "0.0.1",
+  "authors": [
+    "Chris Joel <chris@scriptolo.gy>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Animated_GIF": "sole/Animated_GIF"
+  }
+}
