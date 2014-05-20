@@ -23,7 +23,8 @@
     "bower_components/Animated_GIF/dist/Animated_GIF.worker.js",
     "frame.html",
     "meatflow/common.js",
-    "meatflow/frame.js"
+    "meatflow/frame.js",
+    "meatflow-256.png"
   ],
   "permissions": [
     "*://www.flowdock.com/*",

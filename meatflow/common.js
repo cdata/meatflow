@@ -1,5 +1,11 @@
 window.meatflow = (function (meatflow) {
 
+  meatflow.extensionOrigin = (function () {
+    var a = document.createElement('a');
+    a.href = chrome.runtime.getURL('meatflow.js');
+    return 'chrome-extension://' + a.hostname;
+  })();
+
   meatflow.getUserMedia = (function () {
     return function () {
       return (navigator.getUserMedia ||

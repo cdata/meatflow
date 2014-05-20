@@ -10,9 +10,56 @@
 #Meatflow {
   display: block;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  width: 160px;
+  height: 120px;
+  left: 13px;
+  bottom: -20px;
   outline: none;
   border: 0;
+  opacity: 0;
+
+  -webkit-transition: bottom 0.15s, opacity 0.15s;
+  -webkit-transition-delay: 0s;
+
+  pointer-events: none;
+}
+
+.meatflow-icon {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  -webkit-transition: filter 0.15s, left 0.15s;
+  -webkit-filter: grayscale(100%);
+  width: 30px;
+  height: 30px;
+  background-size: 100%;
+
+  cursor: pointer;
+}
+
+#chat form.meaty.message-form {
+  -webkit-transition: padding-left 0.15s;
+  padding-left: 56px;
+}
+
+#chat form.meaty.meatflow-active.message-form {
+  padding-left: 229px;
+}
+
+.meaty.meatflow-active .meatflow-icon {
+  left: 187px;
+  -webkit-filter: none;
+}
+
+.meaty.meatflow-active #Meatflow {
+  bottom: 0px;
+  opacity: 1;
+  -webkit-transition-delay: 0.15s;
+
+  pointer-events: all;
+}
+
+.compact #chat.meaty li[class*=message]:last-child {
+  padding-bottom: 70px;
 }
