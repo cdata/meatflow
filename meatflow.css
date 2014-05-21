@@ -1,3 +1,14 @@
+@-webkit-keyframes glow {
+  from {
+    -webkit-filter: grayscale(0%);
+    opacity: 0.75;
+  }
+  to {
+    -webkit-filter: grayscale(100%);
+    opacity: 1;
+  }
+}
+
 #MeatflowVideo {
   display: block;
   position: fixed;
@@ -29,13 +40,21 @@
   position: absolute;
   top: 14px;
   left: 16px;
-  -webkit-transition: filter 0.15s, left 0.15s;
-  -webkit-filter: grayscale(100%);
   width: 30px;
   height: 30px;
   background-size: 100%;
 
+  -webkit-transition: filter 0.15s, left 0.15s, opacity 0.15s;
+  -webkit-filter: grayscale(100%);
+  -webkit-transform: translateZ(0);
+
+  opacity: 0.75;
+
   cursor: pointer;
+}
+
+.meatflow-icon:hover {
+  opacity: 1;
 }
 
 #chat form.meaty.message-form {
@@ -47,9 +66,14 @@
   padding-left: 229px;
 }
 
+.meaty.meatflow-activating .meatflow-icon {
+  -webkit-animation: glow 0.5s linear 0s infinite alternate;
+}
+
 .meaty.meatflow-active .meatflow-icon {
   left: 187px;
   -webkit-filter: none;
+  opacity: 1;
 }
 
 .meaty.meatflow-active #Meatflow {
@@ -58,6 +82,21 @@
   -webkit-transition-delay: 0.15s;
 
   pointer-events: all;
+}
+
+.meatflow-progress {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+
+  background-color: #E41E5E;
+
+  z-index: 1;
+
+  -webkit-transition: width 0.1s;
 }
 
 .compact #chat.meaty li[class*=message]:last-child {

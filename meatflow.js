@@ -26,7 +26,8 @@ function Meatflow () {
       };
 
       enableCamera = function () {
-        if (parent.classList.contains('meatflow-active')) {
+        if (parent.classList.contains('meatflow-active') ||
+            parent.classList.contains('meatflow-activating')) {
           return;
         }
 
@@ -36,14 +37,17 @@ function Meatflow () {
           }
 
           parent.classList.add('meatflow-active');
+          parent.classList.remove('meatflow-activating');
           window.removeEventListener('message', enable);
         });
 
+        parent.classList.add('meatflow-activating');
         iframe.contentWindow.postMessage('enable', meatflow.extensionOrigin);
       };
 
       disableCamera = function () {
-        if (!parent.classList.contains('meatflow-active')) {
+        if (!parent.classList.contains('meatflow-active') ||
+            parent.classList.contains('meatflow-activating')) {
           return;
         }
 

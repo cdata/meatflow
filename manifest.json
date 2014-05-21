@@ -4,7 +4,7 @@
   "manifest_version": 2,
 
   "default_locale": "en",
-  "description": "Enables meatier in Flowdock discussion.",
+  "description": "Enables meatier discourse in Flowdock.",
   "icons": {
     "256": "meatflow-256.png"
   },
@@ -28,7 +28,6 @@
   ],
   "permissions": [
     "*://www.flowdock.com/*",
-    "debugger",
     "background"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.flowdock.com; object-src 'self'; frame-src 'self' https://www.flowdock.com"

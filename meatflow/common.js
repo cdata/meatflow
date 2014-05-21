@@ -26,26 +26,25 @@ window.meatflow = (function (meatflow) {
   })();
 
   meatflow.scaledDimensions = function (video) {
+    // TODO: Make this function do something useful..
     var computed = window.getComputedStyle(video);
     var elementWidth = window.parseInt(computed.width.replace('px', ''));
     var elementHeight = window.parseInt(computed.height.replace('px', ''));
     var videoWidth = video.videoWidth;
     var videoHeight = video.videoHeight;
 
-    var scaledWidth = elementHeight / videoHeight * videoWidth;
-    var scaledHeight = elementHeight;
+    scaledWidth = videoWidth / 2;
+    scaledHeight = videoHeight / 2;
 
-    var originX = (elementWidth - scaledWidth) / 2;
-    var originY = (elementHeight - scaledHeight) / 2;
-
-    console.log(originX, originY, scaledWidth, scaledHeight);
+    var originX = 0;
+    var originY = 0;
 
     return [
       video,
       originX, originY,
       scaledWidth * 2,
       scaledHeight * 2,
-      0, 0, 320, 240
+      0, 0, 160, 120
     ];
   };
 
@@ -80,13 +79,13 @@ window.meatflow = (function (meatflow) {
   meatflow.captureFrame = (function () {
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
-    var width = 320;
-    var height = 240;
+    var width = 160;
+    var height = 120;
 
     window.canvas = canvas;
 
-    canvas.width = 320;
-    canvas.height = 240;
+    canvas.width = width;
+    canvas.height = height;
 
     canvas.debug = function () {
       canvas.id = 'MeatflowDebugCanvas';
@@ -99,11 +98,13 @@ window.meatflow = (function (meatflow) {
     };
   })();
 
-  meatflow.record = function (video, seconds, callback) {
+  meatflow.record = function (video, seconds, progress, callback) {
     var frames = seconds * 5;
+    var totalFrames = frames;
     var handle = function (handler) {
       (function nextFrame () {
         handler(meatflow.captureFrame(video));
+        progress((totalFrames - frames) / totalFrames);
 
         if (frames--) {
           window.setTimeout(nextFrame, 200);
@@ -122,7 +123,7 @@ window.meatflow = (function (meatflow) {
       workerPath: chrome.extension.getURL('bower_components/Animated_GIF/dist/Animated_GIF.worker.js')
     });
 
-    gif.setSize(320, 240);
+    gif.setSize(160, 120);
     gif.setDelay(0.2);
 
     handle(function (frame) {
