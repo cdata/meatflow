@@ -44,6 +44,10 @@
         document.body.addEventListener('click', bodyClickHandler);
 
         window.parent.postMessage('enabled', 'https://www.flowdock.com');
+      }, function (error) {
+        try {
+          console.error(error);
+        } catch (e) {}
       });
     } else if (message.data === 'disable') {
       endCurrentStream();
