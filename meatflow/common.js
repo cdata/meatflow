@@ -72,7 +72,7 @@ window.meatflow = (function (meatflow) {
       request.setRequestHeader('Authorization', 'Client-ID b65746fd3674c5b');
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-      request.send('type=base64&image=' + encodeURIComponent(base64Data));
+      request.send('type=base64&image=' + encodeURIComponent(base64Data) + '&album=4jSJ9k5Utka4l56');
     })
   };
 
